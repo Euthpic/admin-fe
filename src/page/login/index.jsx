@@ -43,7 +43,7 @@ class Login extends React.Component {
         //验证通过
         if (checkResult.status) {
             _user.login(loginInfo).then((res) => {
-                    // _mm.setStorage('userInfo', res);
+                     _mm.setStorage('userInfo', res);
                     this.props.history.push(this.state.redirect);
                 }, (errorMsg) => {
                     _mm.errorTips(errorMsg);
