@@ -14,12 +14,13 @@ module.exports = {
   resolve: {
     alias: {
       page: path.resolve(__dirname, 'src/page'),
-      component: path.resolve(__dirname, 'src/component')
+      component: path.resolve(__dirname, 'src/component'),
+      util: path.resolve(__dirname, 'src/util'),
+      service: path.resolve(__dirname, 'src/service')
     }
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.jsx$/,
         exclude: /(node_modules|bower_components)/,
         use: {
@@ -68,7 +69,8 @@ module.exports = {
   mode: 'development',
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html"
+      template: "./src/index.html",
+      favicon: "./favicon.ico"
     }),
     new ExtractTextPlugin("css/[name].css")
   ],
@@ -82,8 +84,18 @@ module.exports = {
   },
   devServer: {
     port: 8086,
-    historyApiFallback : {
+    historyApiFallback: {
       index: '/dist/index.html'
-    }
+    },
+    proxy : {
+      '/manage' : {
+          target: 'http://admintest.happymmall.com',
+          changeOrigin : true
+      },
+      '/user/logout.do' : {
+          target: 'http://admintest.happymmall.com',
+          changeOrigin : true
+      }
+  }
   }
 };

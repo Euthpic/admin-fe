@@ -1,5 +1,4 @@
 import React from 'react';
-import "./index.css";
 import PageTitle from 'component/page-title/index.jsx';
 
 class Home extends React.Component {
